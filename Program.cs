@@ -68,20 +68,20 @@ namespace SeaBattle
                 int posX = random.Next(0, mapSize - 1);
                 int direction = random.Next(0, 100);
 
-                if(map[posY, posX] == 0 && Check(map, posY, posX, shiplength, mapSize, false))
+                if(map[posY, posX] == 0 && ChefIfAvalivle(map, posY, posX, shiplength, mapSize, false))
                 {
                     map[posY, posX] = shiplength;
                     if (direction > 50)
                     {
                         for (int i = 0; i < shiplength; i++)
                         {
-                            if (Check(map, posY, posX + i, shiplength, mapSize, true))
+                            if (ChefIfAvalivle(map, posY, posX + i, shiplength, mapSize, true))
                             {
                                 map[posY, posX + i] = shiplength;
                                 done = true;
                                 //points.Add(new Point(posY, posX + i));
                             }
-                            else if (Check(map, posY, posX + i - shiplength, shiplength, mapSize, true))
+                            else if (ChefIfAvalivle(map, posY, posX + i - shiplength, shiplength, mapSize, true))
                             {
                                 map[posY, (posX + i) - shiplength] = shiplength;
                                 done = true;
@@ -98,13 +98,13 @@ namespace SeaBattle
                     {
                         for (int i = 0; i < shiplength; i++)
                         {
-                            if(Check(map, posY + i, posX, shiplength, mapSize, true))
+                            if(ChefIfAvalivle(map, posY + i, posX, shiplength, mapSize, true))
                             {
                                 map[posY + i, posX] = shiplength;
                                 done = true;
                                 //points.Add(new Point(posY + i, posX));
                             }
-                            else if (Check(map, posY + i - shiplength, posX, shiplength, mapSize, true))
+                            else if (ChefIfAvalivle(map, posY + i - shiplength, posX, shiplength, mapSize, true))
                             {
                                 map[posY + i - shiplength, posX] = shiplength;
                                 done = true;
@@ -121,7 +121,7 @@ namespace SeaBattle
         }
 
 
-        public static bool Check(int[,] map, int posY, int posX, int shipLength, int mapSize, bool isNextAnle)
+        public static bool ChefIfAvalivle(int[,] map, int posY, int posX, int shipLength, int mapSize, bool isNextAnle)
         {
             if (posY < 0 || posY > mapSize - 1 || posX < 0 || posX > mapSize - 1) return false;
             for (int y = posY - 1; y < posY + 2; y++)
